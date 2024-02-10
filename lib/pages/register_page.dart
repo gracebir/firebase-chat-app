@@ -1,17 +1,44 @@
+import 'package:firebase_chat_app/auth/auth_service.dart';
 import 'package:firebase_chat_app/components/my_button.dart';
 import 'package:firebase_chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class RegisterPage extends StatelessWidget {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPassword = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPassword = TextEditingController();
   void Function()? onTap;
   RegisterPage({super.key, required this.onTap});
 
+  void onRegister(BuildContext context) {
+    if (_passwordController.text == _confirmPassword.text) {
+      try {
+        final authService = AuthService();
+        authService.signUpWithEmailAndPassword(
+            _emailController.text, _passwordController.text);
+      } catch (e) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text(e.toString()),
+                ));
+      }
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+                backgroundColor: Colors.white,
+                title: Text(
+                  "Passwords don't match",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    void onRegister() {}
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: ListView(
@@ -67,7 +94,7 @@ class RegisterPage extends StatelessWidget {
                   height: 15,
                 ),
                 // button login
-                MyButton(text: "Register", onTap: onRegister),
+                MyButton(text: "Register", onTap: () => onRegister(context)),
                 const SizedBox(
                   height: 15,
                 ),
