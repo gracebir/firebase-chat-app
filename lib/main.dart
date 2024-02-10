@@ -1,4 +1,5 @@
-import 'package:firebase_chat_app/pages/login_page.dart';
+// import 'package:firebase_chat_app/pages/login_page.dart';
+import 'package:firebase_chat_app/pages/login_or_register.dart';
 import 'package:firebase_chat_app/theme/light_mode.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: lightMode,
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: const LoginOrRegister(),
     );
   }
 }
