@@ -1,4 +1,5 @@
-import 'package:firebase_chat_app/auth/auth_service.dart';
+import 'package:firebase_chat_app/services/auth/auth_service.dart';
+import 'package:firebase_chat_app/components/my_drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,6 +19,7 @@ class HomePage extends StatelessWidget {
           IconButton(onPressed: logout, icon: const Icon(Icons.logout))
         ],
       ),
+      drawer: const MyDrawer(),
     );
   }
 }
