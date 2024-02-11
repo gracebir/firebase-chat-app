@@ -26,8 +26,8 @@ class ChatService {
     final String currentUserEmail = _auth.currentUser!.email!;
     final Timestamp timestamp = Timestamp.now();
     Message newMessage = Message(
-        senderID: currentUserEmail,
-        senderEmail: currentUserID,
+        senderID: currentUserID,
+        senderEmail: currentUserEmail,
         receiverID: receiverID,
         message: message,
         timestamp: timestamp);
@@ -54,7 +54,7 @@ class ChatService {
         .collection("chat_room")
         .doc(chatRoomID)
         .collection("messages")
-        .orderBy("timeStamp", descending: false)
+        .orderBy("timestamp", descending: false)
         .snapshots();
   }
 }
