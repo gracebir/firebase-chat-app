@@ -9,19 +9,17 @@ class HomePage extends StatelessWidget {
   final ChatService _chatService = ChatService();
 
   HomePage({super.key});
-  void logout() async {
-    AuthService authService = AuthService();
-    await authService.signOut();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text("home"),
-        actions: [
-          IconButton(onPressed: logout, icon: const Icon(Icons.logout))
-        ],
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.grey,
       ),
       drawer: const MyDrawer(),
       body: _buidUserList(),
@@ -61,6 +59,7 @@ Widget _buildUserListItem(Map<String, dynamic> userData, BuildContext context) {
               MaterialPageRoute(
                   builder: (context) => ChatPage(
                         receiveEmail: userData['email'],
+                        receiverID: userData['uid'],
                       )));
         });
   } else {
