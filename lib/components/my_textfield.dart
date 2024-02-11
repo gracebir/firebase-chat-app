@@ -4,11 +4,13 @@ class MyTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextEditingController controller;
+  final FocusNode? focusNode;
   MyTextField(
       {super.key,
       required this.hintText,
       required this.obscureText,
-      required this.controller});
+      required this.controller,
+      required this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class MyTextField extends StatelessWidget {
       child: TextField(
         obscureText: obscureText,
         controller: controller,
+        focusNode: focusNode,
         decoration: InputDecoration(
             fillColor: Theme.of(context).colorScheme.secondary,
             filled: true,

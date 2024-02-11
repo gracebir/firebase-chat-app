@@ -8,6 +8,10 @@ class RegisterPage extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPassword = TextEditingController();
+  final FocusNode focusNodeEmail = FocusNode();
+  final FocusNode focusNodePassword = FocusNode();
+  final FocusNode focusNodePasswordConfirm = FocusNode();
+
   void Function()? onTap;
   RegisterPage({super.key, required this.onTap});
 
@@ -69,6 +73,7 @@ class RegisterPage extends StatelessWidget {
                   height: 20,
                 ),
                 MyTextField(
+                  focusNode: focusNodeEmail,
                   hintText: "Email",
                   obscureText: false,
                   controller: _emailController,
@@ -78,6 +83,7 @@ class RegisterPage extends StatelessWidget {
                 ),
                 // password
                 MyTextField(
+                  focusNode: focusNodePassword,
                   hintText: "Password",
                   obscureText: true,
                   controller: _passwordController,
@@ -86,6 +92,7 @@ class RegisterPage extends StatelessWidget {
                   height: 15,
                 ),
                 MyTextField(
+                  focusNode: focusNodePasswordConfirm,
                   hintText: "Confirm password",
                   obscureText: true,
                   controller: _confirmPassword,

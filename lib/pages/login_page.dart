@@ -4,12 +4,22 @@ import 'package:firebase_chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   void Function()? onTap;
   LoginPage({super.key, required this.onTap});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
+
   final _passwordController = TextEditingController();
+
+  final FocusNode focusNodeEmail = FocusNode();
+
+  final FocusNode focusNodePassword = FocusNode();
 
   void onLogin(BuildContext context) async {
     final authService = AuthService();
@@ -60,6 +70,7 @@ class LoginPage extends StatelessWidget {
                     height: 25,
                   ),
                   MyTextField(
+                    focusNode: focusNodeEmail,
                     hintText: "Email",
                     obscureText: false,
                     controller: _emailController,
@@ -69,6 +80,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   // password
                   MyTextField(
+                    focusNode: focusNodePassword,
                     hintText: "Password",
                     obscureText: true,
                     controller: _passwordController,
@@ -91,7 +103,7 @@ class LoginPage extends StatelessWidget {
                             color: Theme.of(context).colorScheme.primary),
                       ),
                       GestureDetector(
-                        onTap: onTap,
+                        onTap: widget.onTap,
                         child: Text(
                           "Register now",
                           style: TextStyle(
